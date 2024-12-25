@@ -2,19 +2,18 @@ import React from "react";
 import {useState} from "react";
 import { db } from "../firebaseConfig";
 import { ref,set } from "firebase/database";
+import { uid } from "uid";
 
 
 function Write(){
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
 
-
     const saveData = () => {
 
-
-
         try {
-            set(ref(db, 'data'),{
+            const uuid = uid()
+            set(ref(db, `/${uuid}`),{
                 name,
                 age
             })
